@@ -46,7 +46,7 @@
 השתמשנו ב-3 שיטות כנדרש בתיקיית `insertTables.sql`:
 
 1. **שיטת התכנות (Python):** יצירת 20,000 רשומות ללקוחות ומוצרים.
-  ![Screenshot Python](./Stage1/InsertInto.png)
+  ![Screenshot Python](./Stage1/insertInto.png)
 2. **ייבוא קבצי CSV:** ייבוא מהיר באמצעות פקודת `COPY`.
   ![Screenshot Import](./Stage1/ImportfromCSV.png)
 3. **פקודות SQL:** שימוש ב-`generate_series` לאכלוס 500 ערים וקטגוריות.
