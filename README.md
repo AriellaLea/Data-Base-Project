@@ -28,7 +28,7 @@
 **קישור למערכת:** (https://ai.studio/apps/8650e2ea-a089-4a44-a7db-0bc43912f06a)
 
 ### מסכי המערכת:
-![App Screen](./maarehet.png)
+![App Screen](./Stage1/maarehet.png)
 
 ---
 
@@ -46,9 +46,9 @@
 השתמשנו ב-3 שיטות כנדרש בתיקיית `insertTables.sql`:
 
 1. **שיטת התכנות (Python):** יצירת 20,000 רשומות ללקוחות ומוצרים.
-  ![Screenshot Python](./InsertInto.png)
+  ![Screenshot Python](./Stage1/InsertInto.png)
 2. **ייבוא קבצי CSV:** ייבוא מהיר באמצעות פקודת `COPY`.
-  ![Screenshot Import](./ImportfromCSV.png)
+  ![Screenshot Import](./Stage1/ImportfromCSV.png)
 3. **פקודות SQL:** שימוש ב-`generate_series` לאכלוס 500 ערים וקטגוריות.
 
 ---
@@ -56,7 +56,7 @@
 ## 5. גיבוי ושחזור נתונים (צילומי מסך)
 ביצענו גיבוי מלא ושחזור בבסיס נתונים חדש. להלן הוכחת הצלחת השחזור עם 20,000 רשומות:
 
-![Screenshot Check](./success.png)
+![Screenshot Check](./Stage1/success.png)
 
 ---
 
