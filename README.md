@@ -1,101 +1,71 @@
 # Data-Base-Project  tirtsa wertenschlag 2023248  ariella bokobza 2075222
 
-הדיאגרמה מציגה מערכת לניהול שיווק של חנות בגדים.
-המערכת כוללת ישויות מרכזיות כמו לקוחות, מוצרים, קמפיינים שיווקיים, ערוצי מדיה, מבצעים וסניפים.
-לקוחות יכולים לקנות מוצרים, והמוצרים נמכרים בסניפים שונים.
-קמפיינים שיווקיים מתבצעים דרך ערוצי מדיה שונים, וכל קמפיין יכול לכלול מספר מבצעים.
-המבצעים קשורים למוצרים מסוימים ומטרתם לעודד רכישות של הלקוחות.
-באמצעות המודל הזה ניתן לנהל בצורה מסודרת את הקשר בין המוצרים, הלקוחות, הקמפיינים והמבצעים.
-CREATE TABLE PROMOTIONS
-(
-  promo_id INT NOT NULL,
-  promo_name INT NOT NULL,
-  discount_percent INT NOT NULL,
-  valid_from INT NOT NULL,
-  valid_to INT NOT NULL,
-  usage_limit INT NOT NULL,
-  PRIMARY KEY (promo_id)
-);
+# דוח פרויקט: StyleFlow Marketing Hub - שלב א'
 
-CREATE TABLE CAMPAIGNS
-(
-  campaign_id INT NOT NULL,
-  campaign_name INT NOT NULL,
-  start_date INT NOT NULL,
-  end_date INT NOT NULL,
-  budget INT NOT NULL,
-  metadata INT NOT NULL,
-  status INT NOT NULL,
-  promo_id INT NOT NULL,
-  PRIMARY KEY (campaign_id),
-  FOREIGN KEY (promo_id) REFERENCES PROMOTIONS(promo_id)
-);
+**מגישים:** אריאלה בוקובזה ותרצה ורטנשלג  
+**תעודת זהות:** 2075222  - 2023248  
+**יחידה:** DBProject (בניית בסיס נתונים)
 
-CREATE TABLE MEDIACHANNELS
-(
-  channel_id INT NOT NULL,
-  channel_name INT NOT NULL,
-  channel_type INT NOT NULL,
-  cost_per_click INT NOT NULL,
-  audience_stats INT NOT NULL,
-  is_active INT NOT NULL,
-  campaign_id INT NOT NULL,
-  PRIMARY KEY (channel_id),
-  FOREIGN KEY (campaign_id) REFERENCES CAMPAIGNS(campaign_id)
-);
+---
 
-CREATE TABLE PRODUCTS
-(
-  product_id INT NOT NULL,
-  product_name INT NOT NULL,
-  category INT NOT NULL,
-  price INT NOT NULL,
-  sku INT NOT NULL,
-  stock_quantity INT NOT NULL,
-  PRIMARY KEY (product_id)
-);
+## תוכן עניינים
+1. [מבוא ותיאור המערכת](#1-מבוא-ותיאור-המערכת)
+2. [מסכי המערכת ולינק (AI Studio)](#2-מסכי-המערכת-ולינק-ai-studio)
+3. [תרשימי ERD ו-DSD](#3-תרשימי-erd-ו-dsd)
+4. [שיטות הכנסת נתונים (צילומי מסך)](#4-שיטות-הכנסת-נתונים)
+5. [גיבוי ושחזור נתונים (צילומי מסך)](#5-גיבוי-ושחזור-נתונים)
+6. [רשימת קבצים בתיקייה](#6-רשימת-קבצים-בתיקייה)
 
-CREATE TABLE CUSTOMERS
-(
-  customer_id INT NOT NULL,
-  first_name INT NOT NULL,
-  last_name INT NOT NULL,
-  email INT NOT NULL,
-  date_of_birth INT NOT NULL,
-  loyalty_points INT NOT NULL,
-  registration_date INT NOT NULL,
-  Attribute INT NOT NULL,
-  PRIMARY KEY (customer_id)
-);
+---
 
-CREATE TABLE BRANCHES
-(
-  branch_id INT NOT NULL,
-  branch_name INT NOT NULL,
-  city_id INT NOT NULL,
-  manager_name INT NOT NULL,
-  opening_hours INT NOT NULL,
-  square_footage INT NOT NULL,
-  Attribute INT NOT NULL,
-  campaign_id INT NOT NULL,
-  PRIMARY KEY (branch_id),
-  FOREIGN KEY (campaign_id) REFERENCES CAMPAIGNS(campaign_id)
-);
+## 1. מבוא ותיאור המערכת
+מערכת **StyleFlow Marketing Hub** היא פלטפורמה לניהול שיווק של רשת אופנה גדולה. המערכת מרכזת נתוני לקוחות, נאמנות, ניהול קמפיינים וקישור מוצרים למבצעים.
+**פונקציונליות עיקרית:** מעקב אחר תקציבי קמפיינים, ניהול פלטפורמות פרסום, והקצאת נקודות נאמנות ללקוחות. מטרת המודל היא ניהול מסודר של הקשר בין המוצרים, הלקוחות, הקמפיינים והמבצעים.
 
-CREATE TABLE PRODUCT_PROMOTION
-(
-  product_id INT NOT NULL,
-  promo_id INT NOT NULL,
-  PRIMARY KEY (product_id, promo_id),
-  FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id),
-  FOREIGN KEY (promo_id) REFERENCES PROMOTIONS(promo_id)
-);
+---
 
-CREATE TABLE CAMPAIGN_CUSTOMER
-(
-  customer_id INT NOT NULL,
-  campaign_id INT NOT NULL,
-  PRIMARY KEY (customer_id, campaign_id),
-  FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id),
-  FOREIGN KEY (campaign_id) REFERENCES CAMPAIGNS(campaign_id)
-);
+## 2. מסכי המערכת ולינק (AI Studio)
+**קישור למערכת:** (https://ai.studio/apps/8650e2ea-a089-4a44-a7db-0bc43912f06a)
+
+### מסכי המערכת:
+![App Screen](./maarehet.png)
+
+---
+
+## 3. תרשימי ERD ו-DSD
+התרשימים משקפים את מבנה בסיס הנתונים בנרמול מלא (3NF).
+* **ERD:** מציג את הקשרים הלוגיים בין הישויות.
+* **DSD:** מציג את סוגי הנתונים (VARCHAR, INT, DATE) והמפתחות.
+
+![ERD Diagram](./Stage1/DSD.pgerd.png)
+![DSD Diagram](./Stage1/DSD.pgerd.png)
+
+---
+
+## 4. שיטות הכנסת נתונים (צילומי מסך)
+השתמשנו ב-3 שיטות כנדרש בתיקיית `insertTables.sql`:
+
+1. **שיטת התכנות (Python):** יצירת 20,000 רשומות ללקוחות ומוצרים.
+  ![Screenshot Python](./InsertInto.png)
+2. **ייבוא קבצי CSV:** ייבוא מהיר באמצעות פקודת `COPY`.
+  ![Screenshot Import](./ImportfromCSV.png)
+3. **פקודות SQL:** שימוש ב-`generate_series` לאכלוס 500 ערים וקטגוריות.
+
+---
+
+## 5. גיבוי ושחזור נתונים (צילומי מסך)
+ביצענו גיבוי מלא ושחזור בבסיס נתונים חדש. להלן הוכחת הצלחת השחזור עם 20,000 רשומות:
+
+![Screenshot Check](./success.png)
+
+---
+
+## 6. רשימת קבצים בתיקייה (Index)
+בתיקיית המאגר תמצאו את הקבצים הבאים:
+* `Characterization.md` - איפיון המערכת
+* `createTables.sql` - יצירת הטבלאות
+* `dropTables.sql` - מחיקת הטבלאות
+* `insertTables.sql` - פקודות הכנסת נתונים
+* `selectAll.sql` - שאילתות בדיקה
+* `backup_2026_04_16.sql` - קובץ הגיבוי המעודכן
+* תיקיות `DataImportFiles` ו-`Programing` עם קבצי המקור.
