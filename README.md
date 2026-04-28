@@ -37,9 +37,9 @@
 * **ERD:** מציג את הקשרים הלוגיים בין הישויות.
 * **DSD:** מציג את סוגי הנתונים (VARCHAR, INT, DATE) והמפתחות.
 
-![ERD Diagram](./Stage1/DSD.pgerd.png)
+![ERD Diagram](./Stage1/ERD.pgerd.png)
 ![DSD Diagram](./Stage1/DSD.pgerd.png)
-
+![ERD Diagram](.erdplus.pn)
 ---
 
 ## 4. שיטות הכנסת נתונים (צילומי מסך)
