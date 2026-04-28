@@ -39,7 +39,7 @@
 
 ![ERD Diagram](./Stage1/ERD.pgerd.png)
 ![DSD Diagram](./Stage1/DSD.pgerd.png)
-![ERD Diagram](.erdplus.pn)
+![ERD Diagram](./erdplus.png)
 ---
 
 ## 4. שיטות הכנסת נתונים (צילומי מסך)
