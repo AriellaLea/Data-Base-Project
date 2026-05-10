@@ -75,7 +75,7 @@
 3.  **עדכון מחירים עקב אינפלציה:** העלאת מחירי המוצרים ב-5% עבור כל המוצרים השייכים לקטגוריית 'Fashion'.
 
 > **צילומי מסך של עדכונים (לפני ואחרי):**
-> ![Update 1 Before/After](./snapshots/update1.png)
+<img src="screen/Update/Update-1.png" alt="Screenshot Update">
 > ![Update 2 Before/After](./snapshots/update2.png)
 > ![Update 3 Before/After](./snapshots/update3.png)
 
