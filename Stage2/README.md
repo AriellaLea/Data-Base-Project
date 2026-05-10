@@ -76,8 +76,13 @@
 
 > **צילומי מסך של עדכונים (לפני ואחרי):**
 <img src="screen/Update/Update-1.png" alt="Screenshot Update">
-> ![Update 2 Before/After](./snapshots/update2.png)
-> ![Update 3 Before/After](./snapshots/update3.png)
+Before
+
+<img src="screen/Update/Update-1-Before.png" alt="Screenshot Update">
+After
+
+<img src="screen/Update/Update-1-After.png" alt="Screenshot Update">
+
 
 ### מחיקות (Delete)
 תיאור פעולות הניקוי והתחזוקה של בסיס הנתונים:
