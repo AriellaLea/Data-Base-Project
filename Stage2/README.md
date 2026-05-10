@@ -71,6 +71,7 @@
 תיאור הפעולות שבוצעו לעדכון הנתונים הקיימים במערכת:
 
 1.  **הוספת נקודות נאמנות:** הוספת 500 נקודות לכל לקוח שהשתתף בקמפיין שמוגדר כ'Active'. פעולה זו משלבת תת-שאילתה עם מספר JOIN-ים כדי לזהות את הלקוחות הרלוונטיים.
+
 2.  **סגירת קמפיינים אוטומטית:** עדכון סטטוס הקמפיין ל-'Completed' עבור כל הקמפיינים שתאריך הסיום שלהם כבר עבר (קטן מהתאריך הנוכחי).
 3.  **עדכון מחירים עקב אינפלציה:** העלאת מחירי המוצרים ב-5% עבור כל המוצרים השייכים לקטגוריית 'Fashion'.
 
@@ -88,13 +89,28 @@ After
 תיאור פעולות הניקוי והתחזוקה של בסיס הנתונים:
 
 1.  **ניקוי מלאי אפס:** מחיקת מוצרים שהמלאי שלהם הוא 0 ושאינם משויכים לשום מבצע (Promotion) פעיל כרגע.
-2.  **סינון פלטפורמות פרסום:** מחיקת פלטפורמות עם חשיפה נמוכה (מתחת ל-1000) ועלות גבוהה (מעל 10000) כדי לייעל את התקציב.
-3.  **הסרת קשרים לקמפיינים שבוטלו:** מחיקת הרשומות בטבלת הקישור של הסניפים עבור קמפיינים שבוטלו (Cancelled). נעשה שימוש בתת-שאילתות מקוננות (Nested Subqueries).
 
-> **צילומי מסך של מחיקות (אישור ביצוע):**
-> ![Delete 1 Result](./snapshots/delete1.png)
-> ![Delete 2 Result](./snapshots/delete2.png)
-> ![Delete 3 Result](./snapshots/delete3.png)
+<img src="screen/DELETES/Delete-1.png" alt="Screenshot Delete">
+
+
+<img src="screen/DELETES/Delete- 1-After.png" alt="Screenshot Delete">
+
+2.  **סינון פלטפורמות פרסום:** מחיקת פלטפורמות עם חשיפה נמוכה (מתחת ל-1000) ועלות גבוהה (מעל 10000) כדי לייעל את התקציב.
+
+<img src="screen/DELETES/Delete 2.png" alt="Screenshot Delete">
+Before
+<img src="screen/DELETES/Delete 2 before (1).png" alt="Screenshot Delete">
+After
+<img src="screen/DELETES/Delete-2-After.png" alt="Screenshot Delete">
+
+
+
+3.  **הסרת קשרים לקמפיינים שבוטלו:** מחיקת הרשומות בטבלת הקישור של הסניפים עבור קמפיינים שבוטלו (Cancelled). נעשה שימוש בתת-שאילתות מקוננות (Nested Subqueries).
+<img src="screen/DELETES/Delete- 3.png" alt="Screenshot Delete">
+Before
+<img src="screen/DELETES/Delete- 3 -Before.png" alt="Screenshot Delete">
+After
+<img src="screen/DELETES/Delete- 3 -After.png" alt="Screenshot Delete">
 
 ### הוספה מורכבת (Complex Insert)
 במסגרת שלב ב', ביצענו הוספה מסיבית של נתונים תוך שימוש בפונקציות SQL מתקדמות:
@@ -115,6 +131,7 @@ After
     *   **תועלת:** הבטחת אמינות הנתונים הפיננסיים של המועדון.
     *   **פקודה:** `ALTER TABLE customers ADD CONSTRAINT chk_points_balance_positive CHECK (points_balance >= 0);`
 
+
 2.  **chk_product_price_positive (טבלת products):**
     *   **הסבר:** מוודא שמחיר מוצר יהיה תמיד גדול מ-0.
     *   **תועלת:** מניעת טעויות אנוש בהזנת מחירים שעלולות לגרום להפסדים או לשגיאות חישוב.
@@ -124,6 +141,8 @@ After
     *   **הסבר:** מוודא שבמחלקת השיווק יש לפחות עובד אחד (גדול מ-0).
     *   **תועלת:** הבטחה שקיימת "ישות אנושית" שמנהלת את התקציבים והאסטרטגיה.
     *   **פקודה:** `ALTER TABLE marketing_management ADD CONSTRAINT chk_management_employee_min CHECK (employee_count > 0);`
+
+<img src="screen/Constraints/Constraint.png" alt="Screenshot Constraint">
 
 ---
 
@@ -137,9 +156,14 @@ After
 *   **התוצאה:** הנתונים הוחזרו למצבם המקורי לפני המחיקה.
 
 > **צילומי מסך של Rollback:**
-> ![Rollback Step 1: Count before](./snapshots/rollback1.png)
-> ![Rollback Step 2: Empty table after delete](./snapshots/rollback2.png)
-> ![Rollback Step 3: Data restored after rollback](./snapshots/rollback3.png)
+<img src="screen/rollback/NumberOfCampaigns.png " alt="Screenshot Rollback">
+<img src="screen/rollback/Rollback.png " alt="Screenshot Rollback">
+<img src="screen/rollback/database after delete.png " alt="Screenshot Rollback">
+<img src="screen/rollback/After Rollback.png " alt="Screenshot Rollback">
+<img src="screen/rollback/AllRowsAfterRollback.png " alt="Screenshot Rollback">
+
+
+
 
 ### תרחיש 2: אישור שינויים סופי (Commit)
 *   **התרחיש:** עדכון נקודות בונוס (100+) לכל הלקוחות הנמצאים ברמת נאמנות 'Bronze'.
@@ -147,8 +171,13 @@ After
 *   **התוצאה:** השינוי נשמר לצמיתות בבסיס הנתונים וזמין לכל המשתמשים.
 
 > **צילומי מסך של Commit:**
-> ![Commit Step 1: Points before update](./snapshots/commit1.png)
-> ![Commit Step 2: Confirmation after commit](./snapshots/commit2.png)
+before
+<img src="screen/Commit/Before_Commit.png " alt="Screenshot Commit">
+<img src="screen/Commit/Commit.png " alt="Screenshot Commit">
+After
+<img src="screen/Commit/After_Commit.png " alt="Screenshot Commit">
+
+
 
 ---
 
@@ -167,6 +196,9 @@ After
 3.  **idx_product_category (טבלת products על עמודת category_id):**
     *   **מוטיבציה:** המשתמשים מחפשים מוצרים לפי קטגוריה בתדירות גבוהה מאוד.
     *   **תוצאה:** אינדקס זה מאפשר גישה ישירה לרשומות הרלוונטיות במקום סריקה של כל רשימת המוצרים.
+
+
+<img src="screen/Indexes/Index2.png " alt="Screenshot Index">
 
 **דו"ח הסברים (מוטיבציה ותועלת):**
 הוספת אינדקסים היא איזון בין מהירות קריאה למהירות כתיבה. בחרנו בעמודות שהן "Foreign Keys" או "Filter Columns" נפוצות. התועלת המרכזית היא חוויית משתמש מהירה יותר ומניעת עומס על שרת מסד הנתונים בזמן דוחות תקופתיים.
