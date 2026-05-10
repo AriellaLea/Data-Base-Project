@@ -11,7 +11,7 @@
 *   **תיאור:** מציאת לקוחות הגרים בעיר 'Tel Aviv' שצברו מעל 100 נקודות במועדון הלקוחות.
 *   **צורות כתיבה:** (ראו קובץ Queries.sql)
    *   אופציה א': שימוש ב-JOIN בין טבלאות הלקוחות, הקמפיינים והסניפים
- ![Screenshot Select](Stage2/screen/Selects(8)/Queries1-A.png)
+ ![Screenshot Select](./Stage2/screen/Selects(8)/Queries1-A.png)
 
 
            *   אופציה ב': שימוש ב-EXISTS עם תת-שאילתה
