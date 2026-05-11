@@ -180,17 +180,17 @@ WHERE campaign_id IN (
     )
 );
 
-
 -- 4. COMPLEX INSERT
 -- ---------------------------------------------------------------
 
--- 1. Create 500 branches automatically using generate_series and CROSS JOIN
--- This generates a variety of branch names and assigns them to existing cities.
-INSERT INTO branches (branch_id, branch_name, city_id, manager_name)
+-- 1. Create 500 branches automatically using generate_series
+-- We start IDs from 1000 to avoid conflicts with manual entries.
+INSERT INTO branches (branch_id, branch_name, city_id, manager_name, opening_hours)
 SELECT 
-    nextval('branches_branch_id_seq'), -- Assuming there's a sequence
+    1000 + gs.i, 
     'StyleFlow Branch ' || gs.i,
     (SELECT city_id FROM cities ORDER BY RANDOM() LIMIT 1),
-    (ARRAY['Alice', 'Bob', 'Charlie', 'Diana', 'Edward', 'Fiona'])[floor(random() * 6 + 1)]
+    (ARRAY['Alice', 'Bob', 'Charlie', 'Diana', 'Edward', 'Fiona'])[floor(random() * 6 + 1)],
+    '09:00 - 20:00'
 FROM generate_series(1, 500) gs(i)
 ON CONFLICT DO NOTHING;
