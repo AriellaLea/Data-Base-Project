@@ -13,7 +13,7 @@
 
 BEGIN;
 
--- [Screenshot 1: Run this SELECT first to show data exists]
+-- [Screenshot 1]
 SELECT COUNT(*) as campaigns_before FROM advertising_campaigns;
 
 -- Deleting all dependencies to allow the campaign deletion
@@ -26,13 +26,13 @@ DELETE FROM campaign_branches;
 -- Now deleting the campaigns
 DELETE FROM advertising_campaigns;
 
--- [Screenshot 2: Run this SELECT to show the table is empty inside the transaction]
+-- [Screenshot 2]
 SELECT COUNT(*) as campaigns_during_transaction FROM advertising_campaigns;
 
 -- Realize it was a mistake!
 ROLLBACK;
 
--- [Screenshot 3: Run this SELECT to show data is back after Rollback]
+-- [Screenshot 3]
 SELECT COUNT(*) as campaigns_restored_after_rollback FROM advertising_campaigns;
 
 
