@@ -197,6 +197,7 @@ After
     *   **מוטיבציה:** המשתמשים מחפשים מוצרים לפי קטגוריה בתדירות גבוהה מאוד.
     *   **תוצאה:** אינדקס זה מאפשר גישה ישירה לרשומות הרלוונטיות במקום סריקה של כל רשימת המוצרים.
 
+<img src="screen/Indexes/Index1.png " alt="Screenshot Index">
 
 <img src="screen/Indexes/Index2.png " alt="Screenshot Index">
 
