@@ -179,3 +179,18 @@ WHERE campaign_id IN (
         WHERE status_name = 'Cancelled'
     )
 );
+
+
+-- 4. COMPLEX INSERT
+-- ---------------------------------------------------------------
+
+-- 1. Create 500 branches automatically using generate_series and CROSS JOIN
+-- This generates a variety of branch names and assigns them to existing cities.
+INSERT INTO branches (branch_id, branch_name, city_id, manager_name)
+SELECT 
+    nextval('branches_branch_id_seq'), -- Assuming there's a sequence
+    'StyleFlow Branch ' || gs.i,
+    (SELECT city_id FROM cities ORDER BY RANDOM() LIMIT 1),
+    (ARRAY['Alice', 'Bob', 'Charlie', 'Diana', 'Edward', 'Fiona'])[floor(random() * 6 + 1)]
+FROM generate_series(1, 500) gs(i)
+ON CONFLICT DO NOTHING;
