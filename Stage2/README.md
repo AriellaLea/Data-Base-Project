@@ -118,7 +118,7 @@ After
 *   **יצירת 500 סניפים באופן אוטומטי:** השתמשנו ב-`generate_series` וב-`CROSS JOIN` כדי ליצור כמות גדולה של סניפים המפוזרים אקראית בין הערים הקיימות, עם שמות מנהלים שנבחרו אקראית מתוך מערך (Array).
 
 > **צילומי מסך של הוספה:**
-<img src="image.png" alt="Screenshot Complex insert">
+<img src="screen/image.png" alt="Screenshot Complex insert">
 
 ---
 
