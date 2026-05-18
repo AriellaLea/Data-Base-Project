@@ -8,7 +8,7 @@
 
 -- Query 1 (Two ways): Find customers from 'Tel Aviv' with more than 100 points.
 -- Way A: Using JOIN (Usually more readable)
-SELECT c.customer_id, c.name, c.points_balance, ci.city_name
+SELECT c.customer_id, c.name, c.points_balance, ci.city_name, l.level_name
 FROM customers c
 JOIN loyalty_levels l ON c.loyalty_level_id = l.loyalty_id
 JOIN campaign_customers cc ON c.customer_id = cc.customer_id
