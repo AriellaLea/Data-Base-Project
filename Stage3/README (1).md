@@ -5,6 +5,9 @@
 ## 1. הינדוס לאחור (Reverse Engineering) - האגף שנתקבל (ERD 4)
 האגף שהתקבל לביצוע אינטגרציה עוסק במערכת לניהול מלאי והזמנות מחסן של חנות בגדים (Clothing Store System).
 
+### תרשים ה-ERD ששוחזר מהאגף שהתקבל (ERD 4):
+![ERD - Clothing Store (ERD 4)](../../Stage3/ERD_ClothingStore.png)
+
 ### רשימת הישויות שזוהו באגף שהתקבל (ERD 4):
 1. **category (קטגוריה):** קטגוריות ראשיות של הבגדים (לדוגמה: בגדי גברים, בגדי נשים, קולקציית חורף וכד').
 2. **products (מוצרים):** פרטי המוצר הגנריים (שם המוצר, מותג, מחיר בסיס, תיאור ומפתח קטגוריה).
@@ -13,6 +16,17 @@
 5. **suppliers (ספקים):** פרטי הספקים מהם רוכשים את הסחורה.
 6. **stock_orders (הזמנות מלאי):** הזמנות מלאי המבוצעות מול הספקים, כולל תאריך, סטטוס, סכום כולל וכמות פריטים.
 7. **order_items (פריטי הזמנה):** השורות המפרטות את כמויות ועלויות הוריאציות המוזמנות בכל הזמנת מלאי.
+
+### מבנה הטבלאות שנתקבלו מהגיבוי (צילומי מסך מהמערכת):
+
+* **שורות פריטי ההזמנות (Order Items Table):**
+  ![Order Items Schema](../../Stage3/screenShot/order_items_table.png)
+
+* **וריאציות ומאפייני מוצר (Product Variants Table):**
+  ![Product Variants Schema](../../Stage3/screenShot/product_variants_table.png)
+
+* **הזמנות ומצב מלאי מול ספקים (Stock Orders Table):**
+  ![Stock Orders Schema](../../Stage3/screenShot/stock_orders_table.png)
 
 ### אלגוריתם הינדוס לאחור (Reverse Engineering Algorithm):
 כדי לקבל את בסיס הנתונים שקיבלנו (SQL Dump) ולהפיק ממנו את תרשים ה-ERD המתאים (ERD 4), פעלנו על פי האלגוריתם הבא:
@@ -33,6 +47,14 @@
 
 ## 2. תהליך האינטגרציה והחלטות הבנייה (מ-ERD 5 ל-ERD 3)
 
+### תרשימי בסיס הפרויקט (מערכת המקור והמבנה הממוזג):
+
+* **המערכת המקורית שלנו - Marketing Hub (ERD 5):**
+  ![ERD - Original Marketing Hub (ERD 5)](../../Stage3/ERD_marketingHub.png)
+
+* **התרשים המשותף והממוזג הסופי (ERD 3):**
+  ![ERD - Merged Integrated System (ERD 3)](../../Stage3/ERDmerge.png)
+
 ### תיאור שיטת האינטגרציה המעשית שביצענו (שלב ג'):
 בניגוד למיזוג סכמות תאורטי בלבד, ביצענו את האינטגרציה במערכת הנתונים בפועל בצורה מדויקת ושלב-אחר-שלב, תוך שימור מלא של הנתונים והמאפיינים המקוריים של שני האגפים ובמיוחד עבור הישות המשותפת - **מוצרים (Products)**.
 
@@ -45,8 +67,23 @@
    
    כדי לבצע את המיזוג בצורה הבטוחה ביותר מבלי לפגוע בנתונים קיימים וליישר קו בין שתי המערכות, ביצענו את השלבים הבאים:
    - **יצירת טבלה זמנית (Temp Table):** הקמנו במערכת טבלה זמנית בשם `temp` (או `temp_products`) במבנה שתואם למוצרים שקיבלנו מהאגף השני.
+     ![Create Products Temp](../../Stage3/screenShot/create_products_temp.png)
+
    - **ייצוא וייבוא לטבלת Temp:** ביצענו ייצוא (Export) של נתוני טבלת המוצרים שניתנה לנו מהאגף השני, וייבאנו (Import) אותם ישירות לתוך טבלת ה-Temp כדי לסדר, לתקן ולמיין בה את המבנה והפורמט.
+     ![Data Integration from Products Temp](../../Stage3/screenShot/data_integration_from_products_temp.png)
+
    - **הלבשת והוספת העמודות הייחודיות שלנו:** הוספנו לטבלת ה-Temp את העמודות המקוריות שלנו שהיו חסרות בטבלה שקיבלנו (לדוגמה עמודות שיווקיות ומלאי כמו `stock_quantity` ו-`sku`), כדי להבטיח שלמות נתונים מקסימלית ועמידה בדרישות של המערכת המקורית שלנו.
+     ![Add Stock Quantity Column](../../Stage3/screenShot/add_stock_quantity_table.png)
+
+   - **חישוב וזיהוי הטווח ומזהה ה-ID המקסימלי במערכת (get_biggest_id):**
+     ![Get Biggest ID](../../Stage3/screenShot/get_biggest_id.png)
+
+   - **הגדרת רצף המספור האוטומטי לקטגוריות החדשות (Auto-increment category_id):**
+     ![Auto Increment Category ID](../../Stage3/screenShot/auto_increment_category_id%20(1).png)
+
+   - **שינוי, השלמה ועידכון ערכים עבור העמודות החדשות (add_values_new_columns):**
+     ![Add Values New Columns](../../Stage3/screenShot/add_values_new_columns.png)
+
    - **מיזוג והעברה לטבלת המקור המשולבת:** לבסוף, העברנו ומיזגנו את כל הנתונים המסודרים מטבלת ה-Temp ישירות לתוך טבלת המוצרים המקורית/הראשית שלנו (`Products`). לקחנו את קולקציית המוצרים המלאה שלהם, הוספנו להם את העמודות המקוריות שלנו, וביצענו עדכון נתונים מונחה אילוצים.
 
 3. **פקודות SQL לעדכון וסידור הנתונים לאחר המיזוג:**
@@ -58,6 +95,7 @@
      SET stock_quantity = floor(random() * 491 + 10)
      WHERE stock_quantity IS NULL;
      ```
+     ![Query Add Data Stock Quantity Products](../../Stage3/screenShot/query_add_data_stock_quantity_products.png)
      
    * **סיווג ומיפוי קטגוריות חכם (Category Mapping) על פי שמות המוצרים ומבנה הקטגוריות הקיים:**
      ```sql
@@ -91,6 +129,10 @@
          OR EXISTS (SELECT 1 FROM categories c WHERE LOWER(c.category_name) = LOWER(split_part(p.product_name, ' ', 2)))
        );
      ```
+     ![Query Update Category ID Products](../../Stage3/screenShot/query_update_category_id_products.png)
+
+   * **שאילתת האינטגרציה לראיית המוצרים המשולבת (query_integration_products):**
+     ![Query Integration Products](../../Stage3/screenShot/query_integration_products.png)
 
 4. **תוצאת מבנה טבלת Products המשולבת:**
    טבלת המוצרים המאוחדת מכילה כעת את כל העמודות של האגף שקיבלנו פלוס העמודות הייחודיות שהיו חשובות לנו לקמפיינים שיווקיים:
