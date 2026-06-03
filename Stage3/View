@@ -1,0 +1,56 @@
+-- =================================================================
+-- 1. View from received department
+-- =================================================================
+---view of luxury products
+CREATE VIEW marketing_view AS
+SELECT
+    p.p_id AS product_code,
+    p.p_name AS product_name,
+    p.p_price AS price,
+    CASE
+        WHEN p.p_price > 100 THEN 'Luxury'
+        ELSE 'Affordable'
+    END AS marketing_position
+FROM products p
+WHERE p.p_price >= 50;
+
+
+-- Query 1.1 :
+-- Print only Luxury products
+SELECT product_name, price
+FROM marketing_view
+WHERE marketing_position = 'Luxury';
+
+-- Query 1.2  :
+-- Calculate average price of luxury products
+SELECT AVG(price) AS average_price_premium
+FROM marketing_view;
+WHERE marketing_position = 'Luxury';
+
+-- =================================================================
+-- 1. View from our own department
+-- =================================================================
+---view of products with low stock quantity
+CREATE VIEW logistic_view AS
+SELECT
+    p.p_id AS product_code,
+    p.p_name AS product_name,
+    c.c_name AS category,
+    p.stock_quantity AS left_quantity
+FROM products p
+JOIN categories c ON p.category_id = c.category_id
+WHERE p.stock_quantity < 10;
+
+
+-- Query 2.1  :
+-- Find the product with the lowest stock quantity
+SELECT product_name, left_quantity 
+FROM logistic_view
+ORDER BY left_quantity ASC
+LIMIT 1;
+
+--Query 2.2  :
+-- Count how many products on low quantity per category
+SELECT category, COUNT(*) AS red_alert_products
+FROM logistic_view
+GROUP BY category;
