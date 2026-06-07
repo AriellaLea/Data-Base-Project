@@ -4,15 +4,15 @@
 ---view of luxury products
 CREATE VIEW marketing_view AS
 SELECT
-    p.p_id AS product_code,
-    p.p_name AS product_name,
-    p.p_price AS price,
+    p.product_id AS product_code,
+    p.product_name AS product_name,
+    p.price AS price,
     CASE
-        WHEN p.p_price > 100 THEN 'Luxury'
+        WHEN p.price > 100 THEN 'Luxury'
         ELSE 'Affordable'
     END AS marketing_position
 FROM products p
-WHERE p.p_price >= 50;
+WHERE p.price >= 50;
 
 
 -- Query 1.1 :
@@ -24,7 +24,7 @@ WHERE marketing_position = 'Luxury';
 -- Query 1.2  :
 -- Calculate average price of luxury products
 SELECT AVG(price) AS average_price_premium
-FROM marketing_view;
+FROM marketing_view
 WHERE marketing_position = 'Luxury';
 
 -- =================================================================
@@ -33,9 +33,9 @@ WHERE marketing_position = 'Luxury';
 ---view of products with low stock quantity
 CREATE VIEW logistic_view AS
 SELECT
-    p.p_id AS product_code,
-    p.p_name AS product_name,
-    c.c_name AS category,
+    p.product_id AS product_code,
+    p.product_name AS product_name,
+    c.category_name AS category,
     p.stock_quantity AS left_quantity
 FROM products p
 JOIN categories c ON p.category_id = c.category_id
