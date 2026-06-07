@@ -175,10 +175,10 @@ WHERE p.price >= 50;
 ```
 
 #### 📸 הוכחת יצירה והרצה של המבט ב-PostgreSQL (Query Tool):
-![יצירת מבט שיווקי בהצלחה בקליק](../Stage3/screenShot/create_marketing_view.png)
+![יצירת מבט שיווקי בהצלחה בקליק](../Stage3/screenShot/create_view_1.png)
 
 #### 📸 תמונת תוצאות שליפת נתוני טבלת המבצע השיווקי (Table View):
-![תוצרי נתוני מבט שיווקי](../Stage3/screenShot/marketing_view_table.png)
+![תוצרי נתוני מבט שיווקי](../Stage3/screenShot/view_1.png)
 
 ---
 
@@ -193,7 +193,7 @@ FROM marketing_view
 WHERE marketing_position = 'Luxury';
 ```
 #### 📸 הוכחה המציגה את פלט שאילתה 1.1:
-![שליפת מוצרי יוקרה בלבד](../Stage3/screenShot/query_luxury_products.png)
+![שליפת מוצרי יוקרה בלבד](../Stage3/screenShot/query_view_1.1.png)
 
 #### 🔍 שאילתה 1.2: חישוב מחיר ממוצע של מוצרי פרימיום ויוקרה במערכת
 *   **תיאור**: שאילתה פיננסית המחשבת את ממוצע המחירים עבור מוצרים המסווגים כיוקרה. מיועד לצורך תמחור קולקציות עתידיות והערכת שווי שוק.
@@ -204,7 +204,7 @@ FROM marketing_view
 WHERE marketing_position = 'Luxury';
 ```
 #### 📸 הוכחה המציגה את פלט שאילתה 1.2:
-![חישוב מחיר ממוצע של קטגוריית היוקרה](../Stage3/screenShot/query_average_price.png)
+![חישוב מחיר ממוצע של קטגוריית היוקרה](../Stage3/screenShot/query_view_1_2.png)
 
 ---
 
@@ -224,10 +224,10 @@ WHERE p.stock_quantity < 10;
 ```
 
 #### 📸 הוכחת יצירה והרצה של המבט ב-PostgreSQL (Query Tool):
-![יצירת מבט לוגיסטי בהצלחה בקליק](../Stage3/screenShot/create_logistic_view.png)
+![יצירת מבט לוגיסטי בהצלחה בקליק](../Stage3/screenShot/create_view_2.png)
 
 #### 📸 תמונת תוצאות שליפת נתוני טבלת המבט הלוגיסטי (Table View):
-![תוצרי נתוני מבט לוגיסטי](../Stage3/screenShot/logistic_view_table.png)
+![תוצרי נתוני מבט לוגיסטי](../Stage3/screenShot/view_2.png)
 
 ---
 
@@ -243,7 +243,7 @@ ORDER BY left_quantity ASC
 LIMIT 1;
 ```
 #### 📸 הוכחה המציגה את פלט שאילתה 2.1:
-![מציאת המוצר עם יתרת המלאי הנמוכה ביותר](../Stage3/screenShot/query_lowest_stock.png)
+![מציאת המוצר עם יתרת המלאי הנמוכה ביותר](../Stage3/screenShot/query_view_2.1.png)
 
 #### 🔍 שאילתה 2.2: ספירת כמות המוצרים בחוסר לפי קטגוריות מוצרים (אזעקה אדומה)
 *   **תיאור**: שאילתה המבצעת קבוצות סיכום (Group By) לספירת מספר הפריטים הנמצאים בסיכון ומלאי נמוך (מתחת ל-10) בכל קטגוריה, המאפשרת לאנשי הלוגיסטיקה לדעת באיזה מחלקה (גברים, נשים, אביזרים) המצב הוא הקריטי ביותר.
@@ -254,7 +254,7 @@ FROM logistic_view
 GROUP BY category;
 ```
 #### 📸 הוכחה המציגה את פלט שאילתה 2.2:
-![ספירת מוצרים מעוררי דאגה לכל קטגוריה](../Stage3/screenShot/query_low_stock_count.png)
+![ספירת מוצרים מעוררי דאגה לכל קטגוריה](../Stage3/screenShot/query_view_2.2.png)
 
 ---
 
