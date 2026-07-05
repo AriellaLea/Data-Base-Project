@@ -1,0 +1,8 @@
+{
+  "name": "StyleFlow SQL Hub",
+  "description": "A comprehensive SQL management dashboard for the StyleFlow Marketing Hub, featuring schema definitions, data dictionaries, and automated data generation scripts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
